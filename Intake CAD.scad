@@ -53,15 +53,18 @@ module shovel(width, height, extension){
     translate([-1*(width/2),7,0]) rotate([90,0,0]) cube([width,height-1,0.25]);
     color("cyan",0.2){
         //angled wall left
-       translate([5.9,7,0]) rotate([90,0,-79]) cube([11,height-1,0.25]);
+       //translate([5.9,7,0]) rotate([90,0,-79]) cube([11,height-1,0.25]);
         //angled wall right
-       translate([-6.15,7,0]) rotate([90,0,261]) cube([11,height-1,0.25]);
+       //translate([-6.15,7,0]) rotate([90,0,261]) cube([11,height-1,0.25]);
     }
     //frame
     color("grey"){
         //vertical posts
         translate([(width/2)-1,7,0]) rotate([0,0,0]) cube([1,1,height]);
         translate([-1*(width/2),7,0]) rotate([0,0,0]) cube([1,1,height]);
+        //wall posts
+        translate([(width/2)-0,7.5,0]) rotate([39.4,0,0]) cube([1,1,18.1177]);
+        translate([-(width/2)-1,7.5,0]) rotate([39.4,0,0]) cube([1,1,18.1177]);
         //top horizontal across
         translate([-1*(width/2),7,height]) rotate([0,90,0]) cube([1,1,width]);
         //top horizontal extending
@@ -76,29 +79,54 @@ module roller(diam){
     color("green"){
         translate([-1.5,0,0]) rotate([0,90,0]) cylinder(1,d=diam);
         translate([0.5,0,0]) rotate([0,90,0]) cylinder(1,d=diam);
+        translate([-3.5,0,0]) rotate([0,90,0]) cylinder(1,d=diam);
+        translate([2.5,0,0]) rotate([0,90,0]) cylinder(1,d=diam);
+        translate([-5.5,0,0]) rotate([0,90,0]) cylinder(1,d=diam);
+        translate([4.5,0,0]) rotate([0,90,0]) cylinder(1,d=diam);
     }
     //mecanum (centering) wheels
+    /**
     color("red"){
         translate([-6.5,0,0]) rotate([0,90,0]) cylinder(2,d=diam);
         translate([-4,0,0]) rotate([0,90,0]) cylinder(2,d=diam);
         translate([4.5,0,0]) rotate([0,90,0]) cylinder(2,d=diam);
         translate([2,0,0]) rotate([0,90,0]) cylinder(2,d=diam);
     }
+    **/
     
 }
 
 module io(width, height, extension, wheel_diam){
     translate([0,-1*(extension-8),height-0.5]) roller(wheel_diam);
-    translate([-width/2-0.7,-1*(extension-8),height-0.5]) color("pink") rotate([90,0,270]) gear (basediameter, depth, degrees, dedendum, addendum, toothwidth, teethnumber, toothshape);
-    translate([-width/2-1.7,-1*(extension-8)+1.0,height-0.5]) color("blue") rotate([90,0,0]) gear (basediameter, depth, degrees, dedendum, addendum, toothwidth, teethnumber, toothshape);
+    //translate([-width/2-0.7,-1*(extension-8),height-0.5]) color("pink") rotate([90,0,270]) gear (basediameter, depth, degrees, dedendum, addendum, toothwidth, teethnumber, toothshape);
+    //translate([-width/2-1.7,-1*(extension-8)+1.0,height-0.5]) color("blue") rotate([90,0,0]) gear (basediameter, depth, degrees, dedendum, addendum, toothwidth, teethnumber, toothshape);
     shovel(width, height, extension);
-    translate([-width/2-1.7,2.3,height-0.5]) rotate([90,0,0]) cim();
-    color("brown") translate([-width/2-3,-1,height-2]) rotate([0,0,0]) cube([3,2,3]);
+    //translate([-width/2-1.7,2.3,height-0.5]) rotate([90,0,0]) cim();
+    //color("brown") translate([-width/2-3,-1,height-2]) rotate([0,0,0]) cube([3,2,3]);
+}
+
+module chassis(){
+    color("purple"){
+        translate([-9,8,0]) rotate([0,0,0]) cube([18,1,1]);
+        
+        translate([-10,9,0]) rotate([0,0,-90]) cube([7,1,1]);
+        translate([9,9,0]) rotate([0,0,-90]) cube([7,1,1]);
+        
+        translate([-7.35,9,0]) rotate([0,0,90]) cube([7,1,1]);
+        translate([8.35,9,0]) rotate([0,0,90]) cube([7,1,1]);
+        
+        translate([-7.35,9,12]) rotate([0,0,90]) cube([7,1,1]);
+        translate([8.35,9,12]) rotate([0,0,90]) cube([7,1,1]);
+        
+        translate([-7.35,9,0]) rotate([0,-90,90]) cube([13,1,1]);
+        translate([8.35,9,0]) rotate([0,-90,90]) cube([13,1,1]);
+    }
 }
 
 //---- main ----//
 translate([0,0,7.25]) our_ball();
-io(width=16,height=16,extension=11.5,wheel_diam=4);
+io(width=14,height=14,extension=14.5,wheel_diam=4);
+chassis();
 
 
 
@@ -247,7 +275,6 @@ if (rbasediameter == 0 && extendbevel == 1) {
 	gear (topdiameter, bdepth, 90, dedendum, addendum, toothwidth, teethnumber);
 
 }
-
 
 
 
