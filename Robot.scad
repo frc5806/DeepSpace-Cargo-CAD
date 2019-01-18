@@ -47,8 +47,8 @@ module hex(diam,length) {
 
 //---- cargo modules ----//
 module shovel(width, height, extension){
-    //bottom plate
-    translate([0,1.5,00.125]) cube([width,10.5,0.25],center=true);
+    //bottom plate 
+    color() translate([0,1.5,00.125]) cube([width,10.5,0.25],center=true);
     //back plate
     translate([-1*(width/2),7,0]) rotate([90,0,0]) cube([width,height-1,0.25]);
     color("cyan",0.2){
@@ -141,11 +141,33 @@ module chassis(){
     color ("purple") translate([9,1,0]) rotate([0,0,0]) cube([6,1,1]);
 }
 
+module arm(){
+    color("pink"){
+    rotate([-5,0,0]){
+   translate([0,0,0]) rotate([-90,0,0]) cylinder(14.39,d=1.56);
+   translate([0,-1,0]) rotate([-90,0,0]) cylinder(7,d=0.5);
+   translate([-0.25,14.25,0.5]) rotate([-90,0,0]) cube([0.5,1,1.25]);
+   translate([-10,0,0]){
+       translate([0,0,0]) rotate([-90,0,0]) cylinder(14.39,d=1.56);
+       translate([0,-1,0]) rotate([-90,0,0]) cylinder(7,d=0.5);
+       translate([-0.25,14.25,0.5]) rotate([-90,0,0]) cube([0.5,1,1.25]);
+   }
+   translate([4,15,0]) rotate([90,0,990]) hex(0.5,18);
+   }
+   }
+}
+
+module hatch(){
+    //allotting this much space for hatch mech
+    color("yellow") translate([-4.5,16,1]) rotate([0,0,0]) cube([9,9,9]);
+}
+
 //---- main ----//
 translate([0,0,7]) our_ball();
 io(width=14,height=14,extension=14.5,wheel_diam=4);
 chassis();
-
+translate([5,9,13.75]) rotate([0,0,0]) arm();
+hatch();
 
 
 
