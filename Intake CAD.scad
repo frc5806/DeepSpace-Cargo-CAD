@@ -106,25 +106,43 @@ module io(width, height, extension, wheel_diam){
 }
 
 module chassis(){
-    color("purple"){
-        translate([-9,8,0]) rotate([0,0,0]) cube([18,1,1]);
-        
-        translate([-10,9,0]) rotate([0,0,-90]) cube([7,1,1]);
-        translate([9,9,0]) rotate([0,0,-90]) cube([7,1,1]);
-        
-        translate([-7.35,9,0]) rotate([0,0,90]) cube([7,1,1]);
-        translate([8.35,9,0]) rotate([0,0,90]) cube([7,1,1]);
-        
-        translate([-7.35,9,12]) rotate([0,0,90]) cube([7,1,1]);
-        translate([8.35,9,12]) rotate([0,0,90]) cube([7,1,1]);
-        
-        translate([-7.35,9,0]) rotate([0,-90,90]) cube([13,1,1]);
-        translate([8.35,9,0]) rotate([0,-90,90]) cube([13,1,1]);
-    }
+    //horizontal bottom front
+     color ("purple") translate([-9,8,0]) rotate([0,0,0]) cube([18,1,1]);
+    
+    //horizontal bottom back
+    color ("purple") translate([-15,25,0]) rotate([0,0,0]) cube([30,1,1]);
+    
+    //side front
+    color ("purple") translate([-10,9,0]) rotate([0,0,-90]) cube([7,1,1]);
+    color ("purple") translate([9,9,0]) rotate([0,0,-90]) cube([7,1,1]);
+    
+    //bottom back
+    color ("red") translate([-7.35,9,0]) rotate([0,0,90]) cube([16,1,1]);
+    color ("red") translate([8.35,9,0]) rotate([0,0,90]) cube([16,1,1]);
+    
+    //top back
+    color ("red")translate([-7.35,9,12]) rotate([0,0,90]) cube([16,1,1]);
+    color ("red") translate([8.35,9,12]) rotate([0,0,90]) cube([16,1,1]);
+    
+    //vertical front
+    color ("red") translate([-7.35,9,0]) rotate([0,-90,90]) cube([13,1,1]);
+    color ("red") translate([8.35,9,0]) rotate([0,-90,90]) cube([13,1,1]);
+    
+    //vertical back
+    color ("red") translate([-7.35,26,0]) rotate([0,-90,90]) cube([13,1,1]);
+    color ("red") translate([8.35,26,0]) rotate([0,-90,90]) cube([13,1,1]);
+    
+    //bottom back
+    color ("purple") translate([-12.35,2,0]) rotate([0,0,90]) cube([24,1,1]);
+    color ("purple") translate([13.35,2,0]) rotate([0,0,90]) cube([24,1,1]);
+    
+    //side front
+    color ("purple") translate([-15,1,0]) rotate([0,0,0]) cube([6,1,1]);
+    color ("purple") translate([9,1,0]) rotate([0,0,0]) cube([6,1,1]);
 }
 
 //---- main ----//
-translate([0,0,7.25]) our_ball();
+translate([0,0,7]) our_ball();
 io(width=14,height=14,extension=14.5,wheel_diam=4);
 chassis();
 
